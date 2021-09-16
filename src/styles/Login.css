@@ -1,0 +1,57 @@
+.Rec {
+  /* box-shadow: 0px 0px 30px 14px rgba(69, 127, 202, 0.8);
+  border-radius: 100px; */
+  /* background-color: white; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+}
+input[type="text"],
+input[type="password"] {
+  width: 470px;
+  border: none;
+  border-bottom: 5px solid #ccc;
+  height: 40px;
+  background: none;
+  outline: none;
+  font-size: 30px;
+  color: #ccc;
+}
+input[type="submit"] {
+  width: 360px;
+  height: 60px;
+  background: #ffffff;
+  border-radius: 100px;
+  font-size: 30px;
+  margin-top: 20px;
+  outline: none;
+  border: none;
+}
+
+form p {
+  color: #ccc;
+  font-size: 30px;
+}
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.login-check {
+  width: 100%;
+  text-align: end;
+  cursor: pointer;
+}
+
+.Sign-Up {
+  color: #ccc;
+  text-decoration: none;
+  font-size: 30px;
+  width: 70%;
+  text-align: right;
+  margin-top: 10px;
+}
