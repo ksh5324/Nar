@@ -6,13 +6,12 @@ import Main from "./components/Main";
 import "./styles/backGround.css";
 
 const App = () => {
-  const ImgUrl = "./images/RENT.png";
   return (
     <div className="backGround-Setting">
       <BrowserRouter>
         <Route path="/" exact component={Main} />
         <Route path="/login" component={Login} />
-        <Route path="/join" component={Join} />
+        <Route path="/join" component={Login} />
       </BrowserRouter>
     </div>
   );

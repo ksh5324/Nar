@@ -7,24 +7,29 @@
   justify-content: center;
   flex-direction: column;
   height: 100vh;
+  flex: 8;
 }
-input[type="text"],
+.no {
+  text-decoration: none;
+  color: black;
+}
+input[type="email"],
 input[type="password"] {
-  width: 470px;
+  width: 350px;
   border: none;
   border-bottom: 5px solid #ccc;
-  height: 40px;
+  height: 30px;
   background: none;
   outline: none;
-  font-size: 30px;
+  font-size: 25px;
   color: #ccc;
 }
 input[type="submit"] {
-  width: 360px;
-  height: 60px;
+  width: 300px;
+  height: 50px;
   background: #ffffff;
   border-radius: 100px;
-  font-size: 30px;
+  font-size: 25px;
   margin-top: 20px;
   outline: none;
   border: none;
@@ -32,7 +37,7 @@ input[type="submit"] {
 
 form p {
   color: #ccc;
-  font-size: 30px;
+  font-size: 25px;
 }
 form {
   display: flex;
@@ -50,8 +55,28 @@ form {
 .Sign-Up {
   color: #ccc;
   text-decoration: none;
-  font-size: 30px;
+  font-size: 25px;
   width: 70%;
   text-align: right;
   margin-top: 10px;
+}
+
+.Frame {
+  display: flex;
+}
+.Back {
+  flex: 4;
+  background-image: url("../images/back.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.4;
+}
+img {
+  width: 20%;
+}
+.none {
+  opacity: 0;
+}
+.notNone {
+  opacity: 1;
 }
