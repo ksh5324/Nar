@@ -1,20 +1,38 @@
 import React from "react";
+import { connect } from "react-redux";
 import { BrowserRouter, Route } from "react-router-dom";
-import Join from "./components/Join";
-import Login from "./components/Login";
-import Main from "./components/Main";
-import "./styles/backGround.css";
+import LoginPage from "./pages/LoginPage";
+import MainPage from "./pages/MainPage";
+import RentPage from "./pages/RentPage";
+import SignUpPage from "./pages/SignUpPage";
 
-const App = () => {
+const App = ({ User }) => {
+  const login = User.log.login;
   return (
-    <div className="backGround-Setting">
-      <BrowserRouter>
-        <Route path="/" exact component={Main} />
-        <Route path="/login" component={Login} />
-        <Route path="/join" component={Login} />
-      </BrowserRouter>
-    </div>
+    <>
+      {login ? (
+        <BrowserRouter>
+          <Route path="/" exact component={MainPage} />
+          <Route path="/signin" exact component={() => <LoginPage />} />
+          <Route path="/signup" component={SignUpPage} />
+          <Route path="/:id" component={RentPage} />
+        </BrowserRouter>
+      ) : (
+        <BrowserRouter>
+          <Route path="/signup" component={SignUpPage} />
+          <Route path="/" exact component={LoginPage} />
+        </BrowserRouter>
+      )}
+    </>
   );
 };
 
-export default App;
+const mapStateToProps = (state) => {
+  return { User: state };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
