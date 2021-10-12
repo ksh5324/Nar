@@ -3,21 +3,20 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { RENT } from "../../reducer/reducer";
 
-const StudentShow = withRouter(({ user, um, RentUm, match }) => {
+const StudentShow = withRouter(({ user, um, RentUm, match, history }) => {
   const index = um.find((v) => user.login == v.rent);
-  const onSubmit = (e) => {
-    e.preventDefault();
-    if (!index) {
-      console.log(match.params.id.slice(1).toString());
-      RentUm(match.params.id.slice(1).toString(), user.rent);
-    } else {
-      return;
-    }
-  };
-
-  useEffect(() => {
-    console.log(user.rent);
-  }, [um]);
+  const onSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (!index) {
+        RentUm(match.params.id.slice(1).toString(), user.login);
+      } else {
+        return;
+      }
+      history.push("/");
+    },
+    [user, um]
+  );
 
   return (
     <div>
