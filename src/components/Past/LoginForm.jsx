@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { connect } from "react-redux";
-import { Login } from "../reducer/reducer";
+import { Login } from "../../reducer/reducer";
 
 const LoginForm = React.memo(({ User, Login }) => {
   const user = User.user;
