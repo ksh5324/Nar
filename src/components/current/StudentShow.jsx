@@ -6,9 +6,8 @@ const StudentShow = ({ user, um }) => {
 
   return (
     <div>
-      {user.grade}학년 {user.classTo}반 {user.num}번
+      {user.grade}학년 {user.classTo}반 {user.num}번 <button>대여</button>
       {index ? <div>{index.rent}</div> : ""}
-      <button>대여</button>
     </div>
   );
 };
