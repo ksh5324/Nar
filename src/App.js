@@ -1,16 +1,20 @@
 import React from "react";
 import { connect } from "react-redux";
 import { BrowserRouter, Route } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
-import MainPage from "./pages/MainPage";
-import RentPage from "./pages/RentPage";
-import SignUpPage from "./pages/SignUpPage";
+import ChoosePage from "./pages/current/ChoosePage";
+import RentPage from "./pages/current/RentPage";
+import StudentInput from "./pages/current/StudentInput";
 
 const App = ({ User }) => {
-  const login = User.log.login;
+  // const login = User.log.login;
   return (
     <>
-      {login ? (
+      <BrowserRouter>
+        <Route path="/" exact component={ChoosePage} />
+        <Route path="/rent" exact component={RentPage} />
+        <Route path="/rent/:id" component={StudentInput} />
+      </BrowserRouter>
+      {/* {login ? (
         <BrowserRouter>
           <Route path="/" exact component={MainPage} />
           <Route path="/signin" exact component={() => <LoginPage />} />
@@ -22,7 +26,7 @@ const App = ({ User }) => {
           <Route path="/signup" component={SignUpPage} />
           <Route path="/" exact component={LoginPage} />
         </BrowserRouter>
-      )}
+      )} */}
     </>
   );
 };

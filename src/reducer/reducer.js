@@ -1,23 +1,20 @@
 const initialState = {
-  user: [
-    { user: "신수민성", id: "love", password: "kids", email: "love@gmail.com" },
-    { user: "주아", id: "like", password: "kids2", email: "love@dgsw.hs.kr" },
-  ],
   log: {
-    login: false,
-    id: "",
-    password: "",
+    login: null,
+    grade: 0,
+    classTo: 0,
+    num: 0,
   },
   rent: [
     { id: 1, rent: false },
-    { id: 2, rent: false },
-    { id: 3, rent: false },
-    { id: 4, rent: true },
-    { id: 5, rent: false },
+    { id: 2, rent: "1304" },
+    { id: 3, rent: "1108" },
+    { id: 4, rent: "1220" },
+    { id: 5, rent: "1115" },
     { id: 6, rent: false },
     { id: 7, rent: false },
     { id: 8, rent: false },
-    { id: 9, rent: true },
+    { id: 9, rent: false },
     { id: 10, rent: false },
   ],
 };
@@ -32,24 +29,25 @@ const reducer = (state = initialState, action) => {
         ...state,
         log: {
           ...state,
-          login: true,
-          id: action.id,
-          password: action.password,
+          login: `${action.grade}${action.classTo}${action.number}`,
+          grade: action.grade,
+          classTo: action.classTo,
+          num: action.number,
         },
       };
-    case SignUp:
-      return {
-        ...state,
-        user: [
-          ...state.user,
-          {
-            user: "김민성",
-            id: action.id,
-            password: action.password,
-            email: action.email,
-          },
-        ],
-      };
+    // case SignUp:
+    //   return {
+    //     ...state,
+    //     user: [
+    //       ...state.user,
+    //       {
+    //         user: "김민성",
+    //         id: action.id,
+    //         password: action.password,
+    //         email: action.email,
+    //       },
+    //     ],
+    //   };
     default:
       return state;
   }
