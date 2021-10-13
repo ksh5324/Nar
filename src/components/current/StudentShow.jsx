@@ -1,10 +1,12 @@
 import React, { useCallback, useEffect } from "react";
+import { useAlert } from "react-alert";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { RENT, RETURN } from "../../reducer/reducer";
 
 const StudentShow = withRouter(
   ({ user, um, RentUm, match, history, ReturnUm }) => {
+    const alert = useAlert();
     const index = um.find((v) => user.login == v.rent);
     const onSubmit = useCallback(
       (e) => {
@@ -17,14 +19,16 @@ const StudentShow = withRouter(
           user.classTo === 0 ||
           user.num === 0
         ) {
-          alert("없는 번호입니다");
+          alert.show(<div style={{ color: "red" }}>없는 번호입니다</div>);
           return;
         }
         if (match.url.includes("rent")) {
           if (!index) {
             RentUm(match.params.id.slice(1).toString(), user.login);
           } else {
-            alert("이미 빌린 우산이 있습니다");
+            alert.show(
+              <div style={{ color: "red" }}>우산을 빌 릴 수 없습니다</div>
+            );
             return;
           }
         }
@@ -33,7 +37,9 @@ const StudentShow = withRouter(
           if (index) {
             ReturnUm(user.login);
           } else {
-            alert("빌린 우산이 없습니다");
+            alert.show(
+              <div style={{ color: "red" }}>빌린 우산이 없습니다</div>
+            );
             return;
           }
         }

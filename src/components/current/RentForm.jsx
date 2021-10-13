@@ -1,4 +1,5 @@
 import React, { useCallback } from "react";
+import { useAlert } from "react-alert";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import "../../styles/RentForm.scss";
@@ -23,8 +24,10 @@ const BoxNum = styled.button`
 `;
 
 const RentForm = ({ rent }) => {
+  const alert = useAlert();
+
   const onClick = useCallback(() => {
-    alert("이미 빌려진 우산입니다");
+    alert.show(<div style={{ color: "red" }}>우산을 빌 릴 수 없습니다</div>);
   }, []);
   return (
     <>

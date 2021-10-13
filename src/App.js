@@ -1,4 +1,5 @@
 import React from "react";
+import { useAlert } from "react-alert";
 import { connect } from "react-redux";
 import { BrowserRouter, Route } from "react-router-dom";
 import ChoosePage from "./pages/current/ChoosePage";
