@@ -14,7 +14,7 @@ const ChooseBack = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-position: 100% 150%;
+  background-position: 100% 100%;
 `;
 
 const ChoosePage = () => {

@@ -2,12 +2,13 @@ import React from "react";
 import { connect } from "react-redux";
 import StudentShow from "../../components/current/StudentShow";
 import StudentInput from "./StudentInput";
+import Temp from "./Temp";
 
 const ReturnPage = ({ rent }) => {
   return (
-    <>
+    <Temp>
       <StudentInput />
-    </>
+    </Temp>
   );
 };
 

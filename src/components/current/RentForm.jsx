@@ -1,5 +1,26 @@
 import React, { useCallback } from "react";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+import "../../styles/RentForm.scss";
+
+const BoxNum = styled.button`
+  width: 250px;
+  height: 250px;
+  border-radius: 20px;
+  background-color: #59d4a0;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 70px;
+  line-height: 82px;
+  color: #ffffff;
+  margin-right: 60px;
+  border: none;
+  &:hover {
+    opacity: 0.8;
+    cursor: pointer;
+  }
+`;
 
 const RentForm = ({ rent }) => {
   const onClick = useCallback(() => {
@@ -9,12 +30,14 @@ const RentForm = ({ rent }) => {
     <>
       {rent.rent === "" ? (
         <Link to={`/rent/:${rent.id}`}>
-          <button>{rent.id}</button>
+          <BoxNum>{rent.id}</BoxNum>
         </Link>
       ) : (
-        <button onClick={onClick} style={{ background: "yellow" }}>
-          {rent.id}
-        </button>
+        <Link to="/rent">
+          <BoxNum onClick={onClick} style={{ background: "#707070" }}>
+            {rent.id}
+          </BoxNum>
+        </Link>
       )}
     </>
   );
