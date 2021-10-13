@@ -23,6 +23,7 @@ export const Login = "LOGIN";
 export const SignUp = "SIGN_UP";
 export const RENT = "RENT";
 export const RETURN = "RETURN";
+export const LOGOUT = "LOG_OUT";
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -55,6 +56,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         log: {
+          ...state.log,
           login: null,
           grade: 0,
           classTo: 0,
@@ -65,6 +67,17 @@ const reducer = (state = initialState, action) => {
         ),
       };
     }
+    case LOGOUT:
+      return {
+        ...state,
+        log: {
+          ...state.log,
+          login: null,
+          grade: 0,
+          classTo: 0,
+          num: 0,
+        },
+      };
     // case SignUp:
     //   return {
     //     ...state,
