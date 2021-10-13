@@ -63,6 +63,11 @@ const StudentShow = withRouter(
                 <div className="InfoText">
                   대여 여부: {index ? <span>네</span> : <span>아니요</span>}
                 </div>
+                {!index ? (
+                  <div className="rentP">우산 대여가 가능합니다</div>
+                ) : (
+                  ""
+                )}
               </div>
             ) : (
               ""
