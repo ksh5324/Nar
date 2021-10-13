@@ -6,7 +6,7 @@ const RentPage = ({ rent }) => {
   return (
     <>
       {rent.map((t) => (
-        <RentForm rent={t} />
+        <RentForm key={t.id} rent={t} />
       ))}
     </>
   );
@@ -15,6 +15,5 @@ const RentPage = ({ rent }) => {
 const mapStateToProps = (state) => {
   return { rent: state.rent };
 };
-const mapDispatchToProps = (dispatch) => {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(RentPage);
+export default connect(mapStateToProps, null)(RentPage);
