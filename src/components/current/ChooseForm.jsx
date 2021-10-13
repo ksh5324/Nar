@@ -9,7 +9,7 @@ const ChooseForm = () => {
       <Link to="/rent">
         <button>대여하기</button>
       </Link>
-      <Link to="/send">
+      <Link to="/return">
         <button>반납하기</button>
       </Link>
     </>

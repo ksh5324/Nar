@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { BrowserRouter, Route } from "react-router-dom";
 import ChoosePage from "./pages/current/ChoosePage";
 import RentPage from "./pages/current/RentPage";
+import ReturnPage from "./pages/current/ReturnPage";
 import StudentInput from "./pages/current/StudentInput";
 
 const App = ({ User }) => {
@@ -13,6 +14,8 @@ const App = ({ User }) => {
         <Route path="/" exact component={ChoosePage} />
         <Route path="/rent" exact component={RentPage} />
         <Route path="/rent/:id" component={StudentInput} />
+        <Route path="/return" component={ReturnPage} exact />
+        <Route path="/return/:id" component={StudentInput} />
       </BrowserRouter>
       {/* {login ? (
         <BrowserRouter>

@@ -1,32 +1,45 @@
 import React, { useCallback, useEffect } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import { RENT } from "../../reducer/reducer";
+import { RENT, RETURN } from "../../reducer/reducer";
 
-const StudentShow = withRouter(({ user, um, RentUm, match, history }) => {
-  const index = um.find((v) => user.login == v.rent);
-  const onSubmit = useCallback(
-    (e) => {
-      e.preventDefault();
-      if (!index) {
-        RentUm(match.params.id.slice(1).toString(), user.login);
-      } else {
-        return;
-      }
-      history.push("/");
-    },
-    [user, um]
-  );
+const StudentShow = withRouter(
+  ({ user, um, RentUm, match, history, ReturnUm }) => {
+    const index = um.find((v) => user.login == v.rent);
+    const onSubmit = useCallback(
+      (e) => {
+        e.preventDefault();
+        if (match.url.includes("rent")) {
+          if (!index) {
+            RentUm(match.params.id.slice(1).toString(), user.login);
+          } else {
+            return;
+          }
+        }
+        if (match.url.includes("return")) {
+          console.log(index);
+          if (index) {
+            ReturnUm(user.login);
+          } else {
+            return;
+          }
+        }
+        history.push("/");
+      },
+      [user, um]
+    );
 
-  return (
-    <div>
-      <form onSubmit={onSubmit}>
-        {user.grade}학년 {user.classTo}반 {user.num}번 <button>대여</button>
-        {index ? <div>{index.rent}</div> : ""}
-      </form>
-    </div>
-  );
-});
+    return (
+      <div>
+        <form onSubmit={onSubmit}>
+          {user.grade}학년 {user.classTo}반 {user.num}번{" "}
+          <button>{match.url.includes("rent") ? "대여" : "반납"}</button>
+          {index ? <div>{index.rent}</div> : ""}
+        </form>
+      </div>
+    );
+  }
+);
 
 const mapStateToProps = (state) => {
   return {
@@ -38,6 +51,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     RentUm: (index, value) => dispatch({ type: RENT, index, value }),
+    ReturnUm: (value) => dispatch({ type: RETURN, value }),
   };
 };
 
