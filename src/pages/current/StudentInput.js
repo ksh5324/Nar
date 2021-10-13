@@ -6,8 +6,12 @@ import Temp from "./Temp";
 const StudentInput = () => {
   return (
     <Temp>
-      <StudentInputForm />
-      <StudentShow />
+      <h1 className="tit">학생 정보 입력</h1>
+      <p className="titp">대여를 위한 정보를 입력해주세요</p>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <StudentInputForm />
+        <StudentShow />
+      </div>
     </Temp>
   );
 };

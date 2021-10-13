@@ -3,6 +3,7 @@ import { useAlert } from "react-alert";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { RENT, RETURN } from "../../reducer/reducer";
+import "../../styles/Show.scss";
 
 const StudentShow = withRouter(
   ({ user, um, RentUm, match, history, ReturnUm }) => {
@@ -49,11 +50,27 @@ const StudentShow = withRouter(
     );
 
     return (
-      <div>
+      <div className="Student">
         <form onSubmit={onSubmit}>
-          {user.grade}학년 {user.classTo}반 {user.num}번{" "}
-          <button>{match.url.includes("rent") ? "대여" : "반납"}</button>
-          {index ? <div>{index.rent}</div> : ""}
+          <div className="Info">
+            {user.grade !== 0 && user.classTo !== 0 && user.num !== 0 ? (
+              <div>
+                <div>
+                  {user.grade}
+                  {user.classTo}
+                  {user.num}
+                </div>
+                <div className="InfoText">
+                  대여 여부: {index ? <span>네</span> : <span>아니요</span>}
+                </div>
+              </div>
+            ) : (
+              ""
+            )}
+            <button className="ClaBut">
+              {match.url.includes("rent") ? "대여" : "반납"}
+            </button>
+          </div>
         </form>
       </div>
     );

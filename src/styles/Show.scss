@@ -1,0 +1,31 @@
+.Student {
+  width: 800px;
+  height: 480px;
+  background-color: white;
+  border-radius: 4px;
+  margin-right: 50px;
+  background-color: rgba($color: #404040, $alpha: 0.9);
+}
+.Info {
+  margin: 35px;
+  font-size: 50px;
+  color: white;
+}
+.InfoText {
+  font-size: 20px;
+}
+.ClaBut {
+  position: absolute;
+  background-color: #3af99d;
+  bottom: 15%;
+  right: 7%;
+  width: 100px;
+  height: 50px;
+  border: none;
+  border-radius: 50px;
+  font-size: 20px;
+  &:hover {
+    opacity: 0.8;
+    cursor: pointer;
+  }
+}
