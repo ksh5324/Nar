@@ -31,14 +31,14 @@ const RentForm = ({ rent }) => {
   }, []);
   return (
     <>
-      {rent.rent === "" ? (
-        <Link to={`/rent/:${rent.id}`}>
-          <BoxNum>{rent.id}</BoxNum>
+      {rent.borrowUserSchId == null ? (
+        <Link to={`/rent/${rent.umbrellaId}`}>
+          <BoxNum>{rent.umbrellaId}</BoxNum>
         </Link>
       ) : (
         <Link to="/rent">
           <BoxNum onClick={onClick} style={{ background: "#707070" }}>
-            {rent.id}
+            {rent.umbrellaId}
           </BoxNum>
         </Link>
       )}

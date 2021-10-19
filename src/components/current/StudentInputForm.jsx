@@ -1,12 +1,34 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import apiConfig from "../../config/apiConfig";
 import { Login } from "../../reducer/reducer";
 import "../../styles/Student.scss";
 
-const StudentInputForm = ({ LoginTo }) => {
+const StudentInputForm = ({ setUser, setStudent, student }) => {
   const [grade, setGrade] = useState(null);
   const [classTo, setClassTo] = useState(null);
   const [number, setNumber] = useState(null);
+  const [enabledForUser, setEnabledForUser] = useState(null);
+
+  const checkUser = () => {
+    axios
+      .get(
+        `${apiConfig.API_ENDPOINT}/borrowed?gradeNum=${grade}&classNum=${classTo}&number=${number}`
+      )
+      .then((res) => {
+        console.log(res.data);
+        setEnabledForUser(res.data.body);
+      });
+  };
+
+  useEffect(() => {
+    setStudent({ grade: grade, classTo: classTo, number: number });
+  }, [enabledForUser]);
+
+  useEffect(() => {
+    setUser(enabledForUser);
+  }, [student]);
 
   const onChangeGrade = (e) => {
     setGrade(e.target.value);
@@ -20,7 +42,7 @@ const StudentInputForm = ({ LoginTo }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    LoginTo(grade, classTo, number);
+    checkUser();
   };
   return (
     <>
@@ -66,17 +88,4 @@ const StudentInputForm = ({ LoginTo }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.log,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    LoginTo: (grade, classTo, number) =>
-      dispatch({ type: Login, grade, classTo, number }),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(StudentInputForm);
+export default StudentInputForm;
