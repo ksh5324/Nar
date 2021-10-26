@@ -12,9 +12,14 @@ const StudentInputForm = ({ setUser, setStudent, student }) => {
   const [enabledForUser, setEnabledForUser] = useState(null);
 
   const checkUser = () => {
+    console.log(grade, classTo, Number(number));
     axios
       .get(
-        `${apiConfig.API_ENDPOINT}/borrowed?gradeNum=${grade}&classNum=${classTo}&number=${number}`
+        `${
+          apiConfig.API_ENDPOINT
+        }/borrowed?gradeNum=${grade}&classNum=${classTo}&number=${Number(
+          number
+        )}`
       )
       .then((res) => {
         console.log(res.data);

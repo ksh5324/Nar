@@ -9,46 +9,54 @@ import "../../styles/Show.scss";
 
 const StudentShow = withRouter(({ user, student, match, history }) => {
   const alert = useAlert();
-  const onSubmit = useCallback(
-    (e) => {
-      e.preventDefault();
-      console.log(user, student);
-      if (
-        student.grade == null ||
-        student.classTo == null ||
-        student.number == null ||
-        student.grade == 0 ||
-        student.classTo == 0 ||
-        student.num == 0
-      ) {
-        alert.show(<div style={{ color: "red" }}>없는 번호입니다</div>);
+  const onSubmit = (e) => {
+    e.preventDefault();
+    console.log(user, student);
+    if (
+      student.grade == null ||
+      student.classTo == null ||
+      student.number == null ||
+      student.grade == 0 ||
+      student.classTo == 0 ||
+      student.num == 0
+    ) {
+      alert.show(<div style={{ color: "red" }}>없는 번호입니다</div>);
+      return;
+    }
+    console.log(match.url.includes("rent"));
+    if (match.url.includes("rent")) {
+      if (!user) {
+        axios.post(
+          `${apiConfig.API_ENDPOINT}/borrow/${match.params.id}?gradeNum=${
+            student.grade
+          }&classNum=${student.classTo}&number=${parseInt(student.number)}`
+        );
+      } else {
+        alert.show(
+          <div style={{ color: "red" }}>우산을 빌 릴 수 없습니다</div>
+        );
         return;
       }
-      if (match.url.includes("rent")) {
-        if (!user) {
-          axios.post(
-            `${apiConfig.API_ENDPOINT}/borrow/${match.params.id}?gradeNum=${student.grade}&classNum=${student.classTo}&number=${student.number}`
-          );
-        } else {
-          alert.show(
-            <div style={{ color: "red" }}>우산을 빌 릴 수 없습니다</div>
-          );
-          return;
-        }
+    }
+
+    if (match.url.includes("return")) {
+      if (user) {
+        axios
+          .delete(
+            `${apiConfig.API_ENDPOINT}/borrow?gradeNum=${
+              student.grade
+            }&classNum=${student.classTo}&number=${parseInt(student.number)}`
+          )
+          .then((res) => {
+            console.log(res.data);
+          });
+      } else {
+        alert.show(<div style={{ color: "red" }}>빌린 우산이 없습니다</div>);
+        return;
       }
-      // if (match.url.includes("return")) {
-      //   console.log(index);
-      //   if (index) {
-      //     ReturnUm(user.login);
-      //   } else {
-      //     alert.show(<div style={{ color: "red" }}>빌린 우산이 없습니다</div>);
-      //     return;
-      //   }
-      // }
-      history.push("/");
-    },
-    [user, student]
-  );
+    }
+    history.push("/");
+  };
 
   return (
     <div className="Student">
@@ -66,10 +74,10 @@ const StudentShow = withRouter(({ user, student, match, history }) => {
               <div className="InfoText">
                 대여 여부: {user ? <span>네</span> : <span>아니요</span>}
               </div>
-              {!user !== null ? (
+              {!user ? (
                 <div className="rentP">우산 대여가 가능합니다</div>
               ) : (
-                ""
+                <div className="rentPP">우산 대여가 이미 되어 있습니다</div>
               )}
             </div>
           ) : (
