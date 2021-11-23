@@ -55,7 +55,7 @@ const StudentShow = withRouter(({ user, student, match, history }) => {
         return;
       }
     }
-    history.push("/");
+    history.push("/15s");
   };
 
   return (

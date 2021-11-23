@@ -2,6 +2,7 @@ import React from "react";
 import { useAlert } from "react-alert";
 import { connect } from "react-redux";
 import { BrowserRouter, Route } from "react-router-dom";
+import Count from "./components/current/Count";
 import ChoosePage from "./pages/current/ChoosePage";
 import RentPage from "./pages/current/RentPage";
 import ReturnPage from "./pages/current/ReturnPage";
@@ -17,6 +18,7 @@ const App = ({ User }) => {
         <Route path="/rent/:id" component={StudentInput} />
         <Route path="/return" component={ReturnPage} exact />
         <Route path="/return/:id" component={StudentInput} />
+        <Route path="/15s" component={Count} />
       </BrowserRouter>
       {/* {login ? (
         <BrowserRouter>
